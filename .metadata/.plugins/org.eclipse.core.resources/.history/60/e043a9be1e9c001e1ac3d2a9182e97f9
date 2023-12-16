@@ -186,7 +186,7 @@ void uart_communication_fsm(){
 			itoa(old_ADC, buffer2, 10);
 			HAL_UART_Transmit(&huart2, buffer2, sizeof(buffer2), 1000);
 			HAL_UART_Transmit(&huart2, endline, sizeof(endline), 1000);
-			setTimer0(3000);
+			setTimer0(1000);
 		}
 	}
 }

@@ -1,12 +1,12 @@
-00:38:30 **** Incremental Build of configuration Debug for project lab5_ex ****
+21:23:55 **** Incremental Build of configuration Debug for project lab5_ex ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function 'uart_communication_fsm':
-../Core/Src/main.c:179:4: warning: implicit declaration of function 'itoa' [-Wimplicit-function-declaration]
-  179 |    itoa(ADC_value, buffer2, 10);
+../Core/Src/main.c:186:4: warning: implicit declaration of function 'itoa' [-Wimplicit-function-declaration]
+  186 |    itoa(old_ADC, buffer2, 10);
       |    ^~~~
-../Core/Src/main.c:180:31: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
-  180 |    HAL_UART_Transmit(&huart2, buffer2, sizeof(buffer2), 1000);
+../Core/Src/main.c:187:31: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  187 |    HAL_UART_Transmit(&huart2, buffer2, sizeof(buffer2), 1000);
       |                               ^~~~~~~
       |                               |
       |                               char *
@@ -17,9 +17,9 @@ In file included from ../Core/Inc/stm32f1xx_hal_conf.h:338,
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:749:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
   749 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                                ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c:179:4: warning: 'buffer2' may be used uninitialized in this function [-Wmaybe-uninitialized]
-  179 |    itoa(ADC_value, buffer2, 10);
-      |    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:186:4: warning: 'buffer2' may be used uninitialized in this function [-Wmaybe-uninitialized]
+  186 |    itoa(old_ADC, buffer2, 10);
+      |    ^~~~~~~~~~~~~~~~~~~~~~~~~~
 arm-none-eabi-gcc -o "lab5_ex.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\Acer\Desktop\DHBK\HK5\VXL\STM32\lab\lab_5\lab5_ex\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lab5_ex.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: lab5_ex.elf
  
@@ -27,7 +27,7 @@ arm-none-eabi-size   lab5_ex.elf
 arm-none-eabi-objdump -h -S  lab5_ex.elf  > "lab5_ex.list"
 arm-none-eabi-objcopy  -O ihex  lab5_ex.elf  "lab5_ex.hex"
    text	   data	    bss	    dec	    hex	filename
-  14308	     24	   1824	  16156	   3f1c	lab5_ex.elf
+  14352	     24	   1832	  16208	   3f50	lab5_ex.elf
 Finished building: default.size.stdout
  
 Finished building: lab5_ex.hex

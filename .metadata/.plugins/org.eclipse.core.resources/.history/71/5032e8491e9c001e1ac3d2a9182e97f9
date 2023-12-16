@@ -177,8 +177,8 @@ void uart_communication_fsm(){
 			uint8_t str[]="!ADC=";
 			uint8_t endline[] = "#\r";
 			char* buffer2;
+			ADC_value = HAL_ADC_GetValue(&hadc1);
 			if(first_read_flag == 1){
-				ADC_value = HAL_ADC_GetValue(&hadc1);
 				old_ADC = ADC_value;
 				first_read_flag = 0;
 			}
@@ -186,7 +186,7 @@ void uart_communication_fsm(){
 			itoa(old_ADC, buffer2, 10);
 			HAL_UART_Transmit(&huart2, buffer2, sizeof(buffer2), 1000);
 			HAL_UART_Transmit(&huart2, endline, sizeof(endline), 1000);
-			setTimer0(3000);
+			setTimer0(1000);
 		}
 	}
 }
